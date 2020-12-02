@@ -19,6 +19,7 @@
         answerDiv.textContent = "Answer: " + answer;
         document.body.appendChild(answerDiv);
 
+        if (answer !== undefined) {
         var answerCopyButton = document.createElement("button");
         answerCopyButton.textContent = "Copy to clipboard";
         answerCopyButton.classList = "answer-button";
