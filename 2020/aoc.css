@@ -10,7 +10,7 @@ body {
   justify-content: center;
   align-items: end;
   grid-template-rows: 1fr auto auto 1fr;
-  height: 100vh;
+  height: 90vh;
   color: #a9428f;
 }
 
