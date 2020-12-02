@@ -14,5 +14,5 @@ Just view the source! It'll be at the bottom of the page within the `<script>` t
 [Part 2](https://jacknight.github.io/AoC/2020/Day%201/Day%201%20-%20Part%202.html)
 
 **Day 2**:
-[Part 1](https://jacknight.github.io/AoC/2020/Day%201/Day%202%20-%20Part%201.html) /
-[Part 2](https://jacknight.github.io/AoC/2020/Day%201/Day%202%20-%20Part%202.html)
+[Part 1](https://jacknight.github.io/AoC/2020/Day%202/Day%202%20-%20Part%201.html) /
+[Part 2](https://jacknight.github.io/AoC/2020/Day%202/Day%202%20-%20Part%202.html)
