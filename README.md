@@ -1,4 +1,4 @@
-# Advent of Code Solutions
+# Advent of Code
 
 [View solutions](https://jacknight.github.io/AoC)
 
