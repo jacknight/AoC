@@ -16,9 +16,24 @@ body {
 
 .answer-button {
   height: 50px;
-  background: #a9428f;
-  color: #bada55;
-  letter-spacing: 1em;
+  background: linear-gradient(to right, #a9428f 50%, #bada55 50%);
+  background-position: right bottom;
+  background-size: 200% 100%;
+  color: #a9428f;
+  letter-spacing: 0.8em;
   text-transform: uppercase;
   font-size: 0.3em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  border: #a9428f solid 2px;
 }
+
+.answer-button:hover,
+.answer-button:focus {
+  color: #bada55;
+  background-position: left bottom;
+  cursor: pointer;
+}
+
+@keyframes;
