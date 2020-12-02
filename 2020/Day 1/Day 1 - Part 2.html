@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../aoc.css" />
+    <title>Day 1 - Part 1</title>
+  </head>
+  <body></body>
+  <script>
+    fetch("input.txt")
+      .then((response) => response.text())
+      .then((text) => {
+        var answer;
+        var nums = text.split("\n");
+        console.log(nums);
+        var answer;
+        for (var i = 0; i < nums.length - 2; i++) {
+          var numsi = Number(nums[i]);
+          for (var j = i + 1; j < nums.length - 1; j++) {
+            var numsj = Number(nums[j]);
+            for (var k = j + 1; k < nums.length; k++) {
+              var numsk = Number(nums[k]);
+              if (numsi + numsj + numsk === 2020) {
+                answer = numsi * numsj * numsk;
+              }
+            }
+          }
+        }
+
+        var answerDiv = document.createElement("div");
+        answerDiv.classList = "answer";
+        answerDiv.textContent = "Answer: " + answer;
+        document.body.appendChild(answerDiv);
+        var answerCopyButton = document.createElement("button");
+        answerCopyButton.textContent = "Copy to clipboard";
+        answerCopyButton.classList = "answer-button";
+        document.querySelector(".answer").appendChild(answerCopyButton);
+
+        answerCopyButton.onclick = function () {
+          const el = document.createElement("textarea");
+          el.value = answer;
+          document.body.appendChild(el);
+          el.select();
+          document.execCommand("copy");
+          document.body.removeChild(el);
+        };
+      });
+  </script>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../aoc.css" />
+    <title>Day 3 - Part 1</title>
+  </head>
+  <body></body>
+  <script>
+    fetch("input.txt")
+      .then((response) => response.text())
+      .then((text) => {
+        // solution here
+        var answer;
+
+        var answerDiv = document.createElement("div");
+        answerDiv.classList = "answer";
+        answerDiv.textContent = "Answer: " + answer;
+        document.body.appendChild(answerDiv);
+      });
+  </script>
+</html>

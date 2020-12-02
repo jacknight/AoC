@@ -1,0 +1,24 @@
+body {
+  background: #bada55;
+  font-family: monospace;
+  font-size: 3em;
+  text-align: center;
+}
+
+.answer {
+  display: grid;
+  justify-content: center;
+  align-items: end;
+  grid-template-rows: 1fr auto auto 1fr;
+  height: 100vh;
+  color: #a9428f;
+}
+
+.answer-button {
+  height: 50px;
+  background: #a9428f;
+  color: #bada55;
+  letter-spacing: 1em;
+  text-transform: uppercase;
+  font-size: 0.3em;
+}
