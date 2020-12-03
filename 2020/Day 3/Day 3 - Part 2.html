@@ -12,7 +12,34 @@
       .then((response) => response.text())
       .then((text) => {
         // solution here
-        var answer;
+        var answer = 0;
+
+        var lines = text.split("\n");
+
+        answer =
+          checkSlope(lines, 1, 1) *
+          checkSlope(lines, 3, 1) *
+          checkSlope(lines, 5, 1) *
+          checkSlope(lines, 7, 1) *
+          checkSlope(lines, 1, 2);
+
+        function checkSlope(lines, xslope, yslope) {
+          var res = 0;
+          var x = 0;
+          for (var y = 0; y < lines.length; y += yslope) {
+            var line = lines[y];
+            if (x > line.length - 1) {
+              x = x - line.length;
+            }
+
+            if (line[x] === "#") {
+              res++;
+            }
+
+            x += xslope;
+          }
+          return res;
+        }
 
         var answerDiv = document.createElement("div");
         answerDiv.classList = "answer";
