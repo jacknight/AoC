@@ -128,8 +128,17 @@ body {
   100% {
     transform: translateY(0);
   }
+
+  46%,
+  48%,
   50% {
-    transform: translateY(30px);
+    transform: translateY(-30px);
+  }
+
+  45%,
+  47%,
+  49% {
+    transform: translateY(-29px);
   }
 }
 
