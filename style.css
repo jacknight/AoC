@@ -130,8 +130,41 @@ body {
   grid-auto-flow: row;
 }
 
-.day {
-  min-width: 200px;
+@media only screen and (max-width: 700px) {
+  .layout h1 {
+    font-size: 1.5em;
+  }
+  .layout h2 {
+    font-size: 1.3em;
+  }
+
+  .day h3 {
+    font-size: 1.2em;
+  }
+  .day {
+    font-size: 1em;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .days {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+  }
+  .layout h1 {
+    font-size: 1.2em;
+  }
+  .layout h2 {
+    font-size: 1.1em;
+  }
+
+  .day h3 {
+    font-size: 1em;
+  }
+  .day {
+    font-size: 0.9em;
+  }
 }
 
 .layout h1 {
