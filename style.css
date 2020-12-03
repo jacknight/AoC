@@ -120,6 +120,17 @@ body {
   justify-content: stretch;
   align-items: center;
   margin: auto;
+  animation: breathing 10s ease-in-out infinite;
+}
+
+@keyframes breathing {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(30px);
+  }
 }
 
 .days {
