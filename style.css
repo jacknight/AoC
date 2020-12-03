@@ -144,7 +144,6 @@ body {
   margin-top: 0;
   margin-bottom: 0;
   background: rgba(31, 51, 236, 1);
-  border-bottom: rgba(255, 226, 0, 1) solid 4px;
 }
 
 .layout h1,
@@ -165,12 +164,8 @@ body {
   color: rgba(255, 226, 0, 1);
 }
 
-.day:nth-of-type(3n) {
-  border-left: rgba(255, 226, 0, 1) solid 4px;
-}
-
-.day:nth-of-type(3n-2) {
-  border-right: rgba(255, 226, 0, 1) solid 4px;
+.day {
+  border: rgba(255, 226, 0, 1) solid 4px;
 }
 
 @media only screen and (max-width: 700px) {

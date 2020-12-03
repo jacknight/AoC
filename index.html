@@ -11,10 +11,10 @@
       <h1>Advent of Code</h1>
       <h2>2020</h2>
       <div class="days">
-        <div class="day">
+        <!-- <div class="day">
           <h3>Day 1</h3>
           <a href="2020/Day 1/Part 1.html">Part 1</a><br />
-          <a href="2020/Day 1/Part 2.html">Part 2</a><br />
+          <a href="2020/Day 1/Part 2.html">Part 2</a>
         </div>
         <div class="day">
           <h3>Day 2</h3>
@@ -91,8 +91,39 @@
         </div>
         <div class="day">
           <h3>Day 25</h3>
-        </div>
+        </div> -->
       </div>
     </div>
+    <script>
+      let daysElement = document.querySelector(".days");
+      for (let i = 1; i < 26; i++) {
+        (async () => {
+          response = await fetch(`2020/Day ${i}/Part 1.html`);
+          if (response.status === 200) {
+            let dayElement = document.createElement("div");
+            let h3Element = document.createElement("h3");
+            let part1Element = document.createElement("a");
+            let part2Element = document.createElement("a");
+            let breakElement = document.createElement("br");
+
+            dayElement.classList = "day";
+            dayElement.style.order = `${i}`;
+
+            h3Element.textContent = `Day ${i}`;
+            part1Element.href = `2020/Day ${i}/Part 1.html`;
+            part1Element.textContent = "Part 1";
+            part2Element.href = `2020/Day ${i}/Part 2.html`;
+            part2Element.textContent = "Part 2";
+
+            dayElement.appendChild(h3Element);
+            dayElement.appendChild(part1Element);
+            dayElement.appendChild(breakElement);
+            dayElement.appendChild(part2Element);
+
+            daysElement.appendChild(dayElement);
+          }
+        })();
+      }
+    </script>
   </body>
 </html>
