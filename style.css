@@ -130,6 +130,49 @@ body {
   grid-auto-flow: row;
 }
 
+.layout h1 {
+  background: rgba(199, 0, 227, 1);
+}
+
+.layout h2 {
+  background: rgba(255, 226, 0, 1);
+}
+
+.day h3 {
+  background: rgba(31, 51, 236, 1);
+}
+
+.layout h1,
+.layout h2,
+.day h3 {
+  color: rgba(255, 254, 247, 1);
+}
+
+.day h3 {
+  border-bottom: rgba(255, 226, 0, 1) solid 4px;
+  margin-bottom: 10px;
+}
+
+.day a {
+  text-decoration: none;
+  color: rgba(195, 0, 223, 1);
+  transition: 0.5s;
+  display: inline-block;
+}
+
+.day a:hover {
+  transform: translateX(20px) scale(110%);
+  color: rgba(255, 226, 0, 1);
+}
+
+.day:nth-of-type(3n) > h3 {
+  border-left: rgba(255, 226, 0, 1) solid 4px;
+}
+
+.day:nth-of-type(3n-2) > h3 {
+  border-right: rgba(255, 226, 0, 1) solid 4px;
+}
+
 @media only screen and (max-width: 700px) {
   .layout h1 {
     font-size: 1.5em;
@@ -165,38 +208,12 @@ body {
   .day {
     font-size: 0.9em;
   }
-}
 
-.layout h1 {
-  background: rgba(199, 0, 227, 1);
-}
+  .day:nth-of-type(3n) > h3 {
+    border-left: none;
+  }
 
-.layout h2 {
-  background: rgba(255, 226, 0, 1);
-}
-
-.day h3 {
-  background: rgba(31, 51, 236, 1);
-}
-
-.layout h1,
-.layout h2,
-.day h3 {
-  color: rgba(255, 254, 247, 1);
-}
-
-.day h3 {
-  border-bottom: rgba(195, 0, 223, 1) solid 1px;
-}
-
-.day a {
-  text-decoration: none;
-  color: rgba(195, 0, 223, 1);
-  transition: 0.5s;
-  display: inline-block;
-}
-
-.day a:hover {
-  transform: translateX(20px) scale(110%);
-  color: rgba(255, 226, 0, 1);
+  .day:nth-of-type(3n-2) > h3 {
+    border-right: none;
+  }
 }
