@@ -116,8 +116,8 @@ body {
 
 .layout {
   display: grid;
-  max-width: 1000px;
-  justify-content: center;
+  max-width: 700px;
+  justify-content: stretch;
   align-items: center;
   margin: auto;
 }
