@@ -111,8 +111,7 @@ body {
   font-family: monospace;
   font-size: 3em;
   text-align: center;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  margin: 0;
 }
 
 .layout {
@@ -120,7 +119,7 @@ body {
   max-width: 1000px;
   justify-content: center;
   align-items: center;
-  max-height: 90vh;
+  margin: auto;
 }
 
 .days {
@@ -132,25 +131,26 @@ body {
 
 .layout h1 {
   background: rgba(199, 0, 227, 1);
+  margin-bottom: 0;
 }
 
 .layout h2 {
   background: rgba(255, 226, 0, 1);
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .day h3 {
+  margin-top: 0;
+  margin-bottom: 0;
   background: rgba(31, 51, 236, 1);
+  border-bottom: rgba(255, 226, 0, 1) solid 4px;
 }
 
 .layout h1,
 .layout h2,
 .day h3 {
   color: rgba(255, 254, 247, 1);
-}
-
-.day h3 {
-  border-bottom: rgba(255, 226, 0, 1) solid 4px;
-  margin-bottom: 10px;
 }
 
 .day a {
@@ -161,15 +161,15 @@ body {
 }
 
 .day a:hover {
-  transform: translateX(20px) scale(110%);
+  transform: scale(110%);
   color: rgba(255, 226, 0, 1);
 }
 
-.day:nth-of-type(3n) > h3 {
+.day:nth-of-type(3n) {
   border-left: rgba(255, 226, 0, 1) solid 4px;
 }
 
-.day:nth-of-type(3n-2) > h3 {
+.day:nth-of-type(3n-2) {
   border-right: rgba(255, 226, 0, 1) solid 4px;
 }
 
@@ -184,17 +184,24 @@ body {
   .day h3 {
     font-size: 1.2em;
   }
-  .day {
+
+  .day a {
     font-size: 1em;
   }
 }
 
 @media only screen and (max-width: 600px) {
+  body {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .days {
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: auto;
   }
+
   .layout h1 {
     font-size: 1.2em;
   }
@@ -205,15 +212,12 @@ body {
   .day h3 {
     font-size: 1em;
   }
-  .day {
+  .day a {
     font-size: 0.9em;
   }
 
-  .day:nth-of-type(3n) > h3 {
-    border-left: none;
-  }
-
-  .day:nth-of-type(3n-2) > h3 {
-    border-right: none;
+  .day {
+    border-left: rgba(255, 226, 0, 1) solid 4px;
+    border-right: rgba(255, 226, 0, 1) solid 4px;
   }
 }
