@@ -13,11 +13,129 @@
       .then((response) => response.text())
       .then((text) => {
         var lines = text.split("\n");
-        var answer;
+        var answer = 0;
 
         // solution here
+        var field = "";
+        var passports = text.split("\n\n");
+
+        var byr = 1;
+        var iyr = 2;
+        var eyr = 3;
+        var hgt = 4;
+        var hcl = 5;
+        var ecl = 6;
+        var pid = 7;
+        var cid = 0;
+
+        var valid = byr + iyr + eyr + hgt + hcl + ecl + pid + cid;
+
+        for (i = 0; i < passports.length; i++) {
+          var passport = passports[i];
+          var entries = passport.split(/\s+/);
+          var sum = 0;
+          for (var j = 0; j < entries.length; j++) {
+            var fieldValue = entries[j].split(":");
+            var field = fieldValue[0];
+            var val = fieldValue[1];
+            sum += checkField(field, val);
+          }
+          if (sum == valid) {
+            answer++;
+          } else {
+          }
+        }
 
         displayAnswer(answer);
+
+        function checkField(field, val) {
+          switch (field) {
+            case "byr":
+              if (
+                val.length === 4 &&
+                Number(val) >= 1920 &&
+                Number(val) <= 2002
+              ) {
+                return byr;
+              }
+              return;
+            case "iyr":
+              if (
+                val.length === 4 &&
+                Number(val) >= 2010 &&
+                Number(val) <= 2020
+              ) {
+                return iyr;
+              }
+              return;
+            case "eyr":
+              if (
+                val.length === 4 &&
+                Number(val) >= 2020 &&
+                Number(val) <= 2030
+              ) {
+                return eyr;
+              }
+              return;
+            case "hgt":
+              var units = val.substring(val.length - 2, val.length);
+              var height = Number(val.substring(0, val.length - 2));
+              if (
+                (units == "cm" && height >= 150 && height <= 193) ||
+                (units == "in" && height >= 59 && height <= 76)
+              ) {
+                return hgt;
+              }
+              return;
+            case "hcl":
+              if (val.length === 7 && val[0] == "#") {
+                if (isHex(val.substring(1, val.length))) {
+                  return hcl;
+                }
+              }
+              return;
+            case "ecl":
+              if (isEyeColor(val)) {
+                return ecl;
+              }
+              return;
+            case "pid":
+              if (val.length === 9 && Number(val) !== undefined) {
+                return pid;
+              }
+              return;
+            case "cid":
+              return cid;
+              return;
+            default:
+              return;
+          }
+        }
+
+        function isHex(val) {
+          if (val.length !== 6) {
+            return false;
+          }
+
+          for (let x = 0; x < val.length; x++) {
+            if (!val[x].match(/[0-9a-f]+/)) {
+              return false;
+            }
+          }
+          return true;
+        }
+
+        function isEyeColor(val) {
+          return (
+            val === "amb" ||
+            val === "blu" ||
+            val === "brn" ||
+            val === "gry" ||
+            val === "grn" ||
+            val === "hzl" ||
+            val === "oth"
+          );
+        }
       });
   </script>
 </html>

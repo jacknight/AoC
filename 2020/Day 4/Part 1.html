@@ -13,11 +13,68 @@
       .then((response) => response.text())
       .then((text) => {
         var lines = text.split("\n");
-        var answer;
+        var answer = 0;
 
         // solution here
+        var field = "";
+        var passports = text.split("\n\n");
+
+        var byr = 1;
+        var iyr = 2;
+        var eyr = 3;
+        var hgt = 4;
+        var hcl = 5;
+        var ecl = 6;
+        var pid = 7;
+        var cid = 0;
+
+        var valid = byr + iyr + eyr + hgt + hcl + ecl + pid + cid;
+
+        for (i = 0; i < passports.length; i++) {
+          var passport = passports[i];
+          var entries = passport.split(/\s+/);
+          var sum = 0;
+          for (var j = 0; j < entries.length; j++) {
+            var fieldValue = entries[j].split(":");
+            var field = fieldValue[0];
+            sum += checkField(field);
+          }
+          if (sum == valid) {
+            answer++;
+          }
+        }
 
         displayAnswer(answer);
+
+        function checkField(field) {
+          switch (field) {
+            case "byr":
+              return byr;
+              break;
+            case "iyr":
+              return iyr;
+              break;
+            case "eyr":
+              return eyr;
+              break;
+            case "hgt":
+              return hgt;
+              break;
+            case "hcl":
+              return hcl;
+              break;
+            case "ecl":
+              return ecl;
+              break;
+            case "pid":
+              return pid;
+              break;
+            case "cid":
+              return cid;
+            default:
+              break;
+          }
+        }
       });
   </script>
 </html>
