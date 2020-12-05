@@ -134,6 +134,15 @@ button {
   padding: 20px;
   justify-self: center;
   margin-top: 20px;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+button:hover {
+  /* background-color: rgba(195, 0, 223, 1); */
+  /* color: rgba(255, 226, 0, 1); */
+  box-shadow: 5px 5px rgba(31, 51, 236, 0.5);
+  transform: translate3d(-5px, -5px, 0);
 }
 
 @keyframes breathing {
@@ -247,5 +256,16 @@ button {
   .day {
     border-left: rgba(255, 226, 0, 1) solid 4px;
     border-right: rgba(255, 226, 0, 1) solid 4px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  button:hover {
+    background-color: rgba(0, 22, 226, 1);
+    color: rgba(255, 226, 0, 1);
+    box-shadow: none;
+    transform: none;
   }
 }
