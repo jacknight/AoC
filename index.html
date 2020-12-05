@@ -13,8 +13,11 @@
       <h2>2020</h2>
       <div class="days"></div>
     </div>
-    <button onclick="stopAnimation()" class="animateButton">
+    <button onclick="toggleAnimation()" class="animateButton">
       Please... <br />stop moving... <br />I'm gonna hurl...
+    </button>
+    <button onclick="toggleAnimation()" class="animateButton hidden">
+      Actually, I kinda liked it.
     </button>
 
     <script>
@@ -48,11 +51,13 @@
         })();
       }
 
-      function stopAnimation() {
+      function toggleAnimation() {
         const layout = document.querySelector(".layout");
         layout.classList.toggle("animated");
-        const button = document.querySelector(".animateButton");
-        button.remove();
+        const buttons = document.querySelectorAll(".animateButton");
+        for (button of buttons) {
+          button.classList.toggle("hidden");
+        }
       }
     </script>
   </body>
