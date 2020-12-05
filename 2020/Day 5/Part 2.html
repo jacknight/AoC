@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../aoc.css" />
+    <title>Day 5 - Part 2</title>
+  </head>
+  <body></body>
+  <script src="../aoc.js"></script>
+  <script>
+    fetch("input.txt")
+      .then((response) => response.text())
+      .then((text) => {
+        var lines = text.split("\n");
+        let answer = 0;
+
+        // solution here
+        const rows = 127;
+        const cols = 7;
+
+        var maxRow = 0;
+        var minRow = rows + 1;
+        let ids = new Map();
+
+        for (passport of lines) {
+          let id = findId(passport);
+          ids.set(id, true);
+        }
+
+        minId = minRow * 8;
+        maxId = maxRow * 8;
+        for (let x = minId; x <= maxId; x++) {
+          if (!ids.has(x)) {
+            answer = x;
+            break;
+          }
+        }
+
+        displayAnswer(answer);
+
+        function findId(passport) {
+          let row = findRow(passport);
+          minRow = Math.min(row, minRow);
+          maxRow = Math.max(row, maxRow);
+
+          let col = findColumn(passport);
+
+          return row * (cols + 1) + col;
+        }
+
+        function findRow(passport) {
+          let currMax = rows;
+          let currMin = 0;
+          let currIndex = 0;
+
+          while (
+            currMin < currMax &&
+            currIndex < passport.length &&
+            (passport[currIndex] === "F" || passport[currIndex] === "B")
+          ) {
+            if (passport[currIndex] === "F") {
+              currMax -= Math.ceil((currMax - currMin) / 2);
+            } else {
+              currMin += Math.ceil((currMax - currMin) / 2);
+            }
+            currIndex++;
+          }
+          return currMax;
+        }
+
+        function findColumn(passport) {
+          let currMax = cols;
+          let currMin = 0;
+          let currIndex = 7;
+
+          while (
+            currMin < currMax &&
+            currIndex < passport.length &&
+            (passport[currIndex] === "L" || passport[currIndex] === "R")
+          ) {
+            if (passport[currIndex] === "L") {
+              currMax -= Math.ceil((currMax - currMin) / 2);
+            } else {
+              currMin += Math.ceil((currMax - currMin) / 2);
+            }
+            currIndex++;
+          }
+          return currMax;
+        }
+      });
+  </script>
+</html>

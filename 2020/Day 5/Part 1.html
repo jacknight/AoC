@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../aoc.css" />
+    <title>Day 5 - Part 1</title>
+  </head>
+  <body></body>
+  <script src="../aoc.js"></script>
+  <script>
+    fetch("input.txt")
+      .then((response) => response.text())
+      .then((text) => {
+        var lines = text.split("\n");
+        let answer = 0;
+
+        // solution here
+        const rows = 127;
+        const cols = 7;
+
+        for (passport of lines) {
+          // find row
+          let row = findRow(passport);
+
+          // find column
+          let col = findColumn(passport);
+
+          // find id
+          let id = row * 8 + col;
+          answer = Math.max(id, answer);
+        }
+
+        displayAnswer(answer);
+
+        function findRow(passport) {
+          let currMax = rows;
+          let currMin = 0;
+          let currIndex = 0;
+
+          while (
+            currMin < currMax &&
+            currIndex < passport.length &&
+            (passport[currIndex] === "F" || passport[currIndex] === "B")
+          ) {
+            if (passport[currIndex] === "F") {
+              currMax -= Math.ceil((currMax - currMin) / 2);
+            } else {
+              currMin += Math.ceil((currMax - currMin) / 2);
+            }
+            currIndex++;
+          }
+          return currMax;
+        }
+
+        function findColumn(passport) {
+          let currMax = cols;
+          let currMin = 0;
+          let currIndex = 7;
+
+          while (
+            currMin < currMax &&
+            currIndex < passport.length &&
+            (passport[currIndex] === "L" || passport[currIndex] === "R")
+          ) {
+            if (passport[currIndex] === "L") {
+              currMax -= Math.ceil((currMax - currMin) / 2);
+            } else {
+              currMin += Math.ceil((currMax - currMin) / 2);
+            }
+            currIndex++;
+          }
+          return currMax;
+        }
+      });
+  </script>
+</html>
