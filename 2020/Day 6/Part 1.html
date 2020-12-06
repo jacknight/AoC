@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../aoc.css" />
+    <title>Day 6 - Part 1</title>
+  </head>
+  <body></body>
+  <script src="../aoc.js"></script>
+  <script>
+    fetch("input.txt")
+      .then((response) => response.text())
+      .then((text) => {
+        let groups = text.split("\n\n");
+        let answer = 0;
+
+        // solution here
+        for (group of groups) {
+          console.log(group);
+          let people = group.split("\n");
+          let map = new Map();
+          for (person of people) {
+            for (let i = 0; i < person.length; i++) {
+              map.set(person[i], true);
+            }
+          }
+          let sum = 0;
+          map.forEach(function (val, key) {
+            sum++;
+          });
+          answer += sum;
+        }
+
+        displayAnswer(answer);
+      });
+  </script>
+</html>
