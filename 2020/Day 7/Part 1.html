@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../aoc.css" />
+    <title>Day 6 - Part 1</title>
+  </head>
+  <body></body>
+  <script src="../aoc.js"></script>
+  <script>
+    fetch("input.txt")
+      .then((response) => response.text())
+      .then((text) => {
+        var bags = text.split("\n");
+        let answer = 0;
+
+        // solution here
+        var map = new Map();
+        var contains = new Map();
+        // build map
+        for (bag of bags) {
+          let elements = bag.split(" ");
+          let bagName = elements[0] + " " + elements[1];
+          map.set(bagName, bag);
+        }
+
+        map.forEach(function (val, key) {
+          if (contains.has(key)) {
+            if (contains.get(key)) {
+              answer++;
+            }
+          } else if (canContain("shiny gold", key)) {
+            answer++;
+            contains.set(key, true);
+          }
+        });
+        displayAnswer(answer);
+
+        function canContain(type, bagKey) {
+          let bag = map.get(bagKey);
+          let leftRight = bag.split("contain");
+          let right = leftRight[1];
+          if (right === undefined) {
+            console.log("JACK", bag, leftRight);
+          }
+
+          if (right.match(/shiny gold/)) {
+            return true;
+          }
+
+          let matches = right.match(/[0-9]+.*?[,.]/g);
+          let result = false;
+          if (matches) {
+            for (match of matches) {
+              elements = match.split(" ");
+              result |= canContain(type, elements[1] + " " + elements[2]);
+            }
+          }
+          return result;
+        }
+      });
+  </script>
+</html>
