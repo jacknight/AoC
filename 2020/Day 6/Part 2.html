@@ -17,7 +17,6 @@
 
         // solution here
         for (group of groups) {
-          console.log(group);
           let people = group.split("\n");
           let map = new Map();
           for (person of people) {
@@ -31,7 +30,6 @@
           }
           let sum = 0;
           map.forEach(function (val, key) {
-            console.log(key, val, people.length);
             if (val.val === people.length) {
               sum++;
             }

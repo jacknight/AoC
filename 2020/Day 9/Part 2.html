@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../aoc.css" />
+    <title>Day 9 - Part 2</title>
+  </head>
+  <body></body>
+  <script src="../aoc.js"></script>
+  <script>
+    fetch("input.txt")
+      .then((response) => response.text())
+      .then((text) => {
+        var lines = text.split("\n");
+        // solution here
+        let answer = findPair(lines, 25918798);
+
+        function findPair(preamble, target) {
+          for (let i = 0; i < preamble.length - 1; i++) {
+            let j = i + 1;
+            let sum = Number(preamble[i]);
+            while (sum + Number(preamble[j]) <= target) {
+              sum += Number(preamble[j]);
+              j++;
+            }
+
+            if (sum === target) {
+              const range = preamble.slice(i, j).sort();
+              return Number(range[0]) + Number(range[range.length - 1]);
+            }
+          }
+          return 0;
+        }
+        displayAnswer(answer);
+      });
+  </script>
+</html>
