@@ -12,7 +12,10 @@
       <div class="layout animated">
         <h1>Advent of Code</h1>
         <h2>2020</h2>
-        <div class="days"></div>
+        <div class="preload">
+          <div class="days-loading">Loading...</div>
+          <div class="days hidden"></div>
+        </div>
       </div>
       <button onclick="toggleAnimation()" class="animateButton">
         Tap if you're seasick.
@@ -26,7 +29,7 @@
       let daysElement = document.querySelector(".days");
       for (let i = 1; i < 26; i++) {
         (async () => {
-          response = await fetch(`2020/Day ${i}/Part 1.html`);
+          let response = await fetch(`2020/Day ${i}/Part 1.html`);
           if (response.status === 200) {
             let dayElement = document.createElement("div");
             let h3Element = document.createElement("h3");
@@ -50,7 +53,22 @@
 
             daysElement.appendChild(dayElement);
           }
-        })();
+        })().then(() => {
+          if (i === 25) {
+            loaded();
+          }
+        });
+      }
+
+      window.onload = setTimeout(loaded, 2000);
+
+      function loaded() {
+        const daysLoading = document.querySelector(".days-loading");
+        const days = document.querySelector(".days");
+        daysLoading.classList.add("hidden");
+        daysLoading.style.opacity = 0;
+        days.classList.remove("hidden");
+        days.style.opacity = 1;
       }
 
       function toggleAnimation() {

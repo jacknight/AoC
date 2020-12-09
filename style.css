@@ -81,7 +81,15 @@ body {
   animation: breathing 10s ease-in-out infinite;
 }
 
+.preload {
+  display: grid;
+}
+
 .hidden {
+  visibility: hidden;
+}
+
+button.hidden {
   display: none;
 }
 
@@ -126,11 +134,36 @@ button:hover {
   }
 }
 
+.days-loading {
+  display: grid;
+  min-height: 400px;
+  justify-content: center;
+  align-items: center;
+
+  grid-row-start: 1;
+  grid-column-start: 1;
+
+  color: rgba(255, 254, 247, 1);
+  background: linear-gradient(
+    to top,
+    rgba(199, 0, 227, 1),
+    rgba(31, 51, 236, 1),
+    rgba(255, 226, 0, 1)
+  );
+  transition: all 0.3s;
+  opacity: 1;
+}
+
 .days {
   display: grid;
   grid-template-rows: repeat(auto-fill, auto);
   grid-template-columns: repeat(3, auto);
   grid-auto-flow: row;
+
+  grid-row-start: 1;
+  grid-column-start: 1;
+  transition: all 1s;
+  opacity: 0;
 }
 
 .layout h1 {
