@@ -12,10 +12,39 @@
     fetch("input.txt")
       .then((response) => response.text())
       .then((text) => {
-        let lines = text.split("\n");
-        let answer = 0;
+        let adapters = text.split("\n").map(Number);
+        let answer = 1;
+
+        adapters.push(0);
+        adapters.sort((a, b) => a - b);
+        adapters.push(Number(adapters[adapters.length - 1]) + 3);
 
         // solution here
+
+        let map = new Map();
+        answer = findPaths(adapters, 0);
+        function findPaths(adapters, start) {
+          if (map.has(start)) {
+            return map.get(start);
+          }
+
+          let curr = start + 1;
+          let answer = 0;
+          while (
+            curr < adapters.length &&
+            adapters[curr] - adapters[start] < 4
+          ) {
+            answer += findPaths(adapters, curr);
+            curr++;
+          }
+
+          // The last call to findPaths is the last node.
+          // It has one path, so we make sure that gets set here
+          // before things starts to go back up the call stack.
+          answer ||= 1;
+          map.set(start, answer);
+          return answer;
+        }
 
         displayAnswer(answer);
       });

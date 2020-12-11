@@ -12,11 +12,36 @@
     fetch("input.txt")
       .then((response) => response.text())
       .then((text) => {
-        let lines = text.split("\n");
+        let adapters = text.split("\n").map(Number);
         let answer = 0;
 
         // solution here
+        adapters.sort((a, b) => a - b);
+        console.log(adapters);
+        let oneDiff = 0;
+        let twoDiff = 0;
+        let threeDiff = 1;
 
+        if (adapters[0] === 1) {
+          oneDiff++;
+        } else if (adapters[0] === 2) {
+          twoDiff++;
+        } else if (adapters[0] === 3) {
+          threeDiff++;
+        }
+
+        for (let i = 1; i < adapters.length; i++) {
+          let diff = Number(adapters[i]) - Number(adapters[i - 1]);
+          if (diff === 1) {
+            oneDiff++;
+          } else if (diff === 2) {
+            twoDiff++;
+          } else if (diff === 3) {
+            threeDiff++;
+          }
+        }
+        console.log(oneDiff, threeDiff);
+        answer = oneDiff * threeDiff;
         displayAnswer(answer);
       });
   </script>
