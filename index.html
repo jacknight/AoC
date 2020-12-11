@@ -58,15 +58,25 @@
         })().then(() => {
           returned++;
           if (returned === 25) {
-            loaded();
+            daysLoaded();
           }
         });
       }
 
       // In case one of the fetch calls hangs for some reason
-      window.onload = setTimeout(loaded, 2000);
+      window.onload = windowLoaded();
 
-      function loaded() {
+      function windowLoaded() {
+        setTimeout(daysLoaded, 2000);
+
+        const animatedContents = readCookie("animatedContents");
+        if (animatedContents === "false") {
+          toggleAnimation();
+          toggleCookie("animatedContents");
+        }
+      }
+
+      function daysLoaded() {
         const daysLoading = document.querySelector(".days-loading");
         const days = document.querySelector(".days");
         daysLoading.classList.add("hidden");
@@ -81,6 +91,53 @@
         const buttons = document.querySelectorAll(".animateButton");
         for (button of buttons) {
           button.classList.toggle("hidden");
+        }
+
+        toggleCookie("animatedContents");
+      }
+
+      function createCookie(name, value, days) {
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+          var expires = "; expires=" + date.toGMTString();
+          var sameSite = "; SameSite=Strict";
+        } else {
+          var expires = "";
+        }
+        document.cookie = name + "=" + value + expires + sameSite + "; path=/";
+      }
+
+      function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(";");
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == " ") {
+            c = c.substring(1, c.length);
+          }
+          if (c.indexOf(nameEQ) == 0) {
+            return c.substring(nameEQ.length, c.length);
+          }
+        }
+        return null;
+      }
+
+      function eraseCookie(name) {
+        createCookie(name, "", -1);
+      }
+
+      function toggleCookie(name) {
+        const cookie = readCookie(name);
+        eraseCookie(name);
+        if (cookie !== null) {
+          if (cookie === "true") {
+            createCookie(name, "false", 30);
+          } else {
+            createCookie(name, "true", 30);
+          }
+        } else {
+          createCookie(name, "true", 30);
         }
       }
     </script>
