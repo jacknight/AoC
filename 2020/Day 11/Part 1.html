@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../aoc.css" />
+    <title>Day 11 - Part 1</title>
+  </head>
+  <body></body>
+  <script src="../aoc.js"></script>
+  <script>
+    fetch("input.txt")
+      .then((response) => response.text())
+      .then((text) => {
+        var rows = text.split("\n");
+        let answer = 0;
+
+        // solution here
+        let changes = true;
+        while (changes) {
+          changes = false;
+          let rowsCopy = rows.slice();
+          for (let y = 0; y < rows.length; y++) {
+            let row = rows[y];
+            for (let x = 0; x < row.length; x++) {
+              if (row[x] === ".") continue;
+              changes |= checkAdjacent(rowsCopy, x, y);
+            }
+          }
+        }
+        console.log(rows);
+
+        answer = countOccupied(rows);
+
+        function countOccupied(rowsCopy) {
+          let occupied = 0;
+          for (let y = 0; y < rowsCopy.length; y++) {
+            console.log(rowsCopy[y]);
+            for (let x = 0; x < rowsCopy[y].length; x++) {
+              if (rowsCopy[y][x] === "#") occupied++;
+            }
+          }
+          return occupied;
+        }
+
+        function checkAdjacent(rowsCopy, posX, posY) {
+          let occupied = rowsCopy[posY][posX] === "#";
+          let adjacent = 0;
+
+          // look left
+          if (posX - 1 >= 0) if (rowsCopy[posY][posX - 1] === "#") adjacent++;
+          // look right
+          if (posX + 1 < rowsCopy[posY].length)
+            if (rowsCopy[posY][posX + 1] === "#") adjacent++;
+          // look down
+          if (posY - 1 >= 0) if (rowsCopy[posY - 1][posX] === "#") adjacent++;
+          // look up
+          if (posY + 1 < rowsCopy.length)
+            if (rowsCopy[posY + 1][posX] === "#") adjacent++;
+          // look down to the left
+          if (posX - 1 >= 0 && posY - 1 >= 0)
+            if (rowsCopy[posY - 1][posX - 1] === "#") adjacent++;
+          // look up to left
+          if (posX - 1 >= 0 && posY + 1 < rowsCopy.length)
+            if (rowsCopy[posY + 1][posX - 1] === "#") adjacent++;
+          // look up to the right
+          if (posX + 1 < rowsCopy[posY].length && posY + 1 < rowsCopy.length)
+            if (rowsCopy[posY + 1][posX + 1] === "#") adjacent++;
+          // look down to the right
+          if (posX + 1 < rowsCopy[posY].length && posY - 1 >= 0)
+            if (rowsCopy[posY - 1][posX + 1] === "#") adjacent++;
+
+          let changedSomething = false;
+          if (occupied && adjacent >= 4) {
+            rows[posY] =
+              rows[posY].substring(0, posX) +
+              "L" +
+              rows[posY].substring(posX + 1);
+            changedSomething = true;
+          } else if (!occupied && adjacent === 0) {
+            rows[posY] =
+              rows[posY].substring(0, posX) +
+              "#" +
+              rows[posY].substring(posX + 1);
+            changedSomething = true;
+          }
+          return changedSomething;
+        }
+
+        displayAnswer(answer);
+      });
+  </script>
+</html>
