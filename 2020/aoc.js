@@ -1,4 +1,7 @@
 function displayAnswer(answer) {
+  var calculatingDiv = document.querySelector(".calculating");
+  calculatingDiv.remove();
+
   var answerDiv = document.createElement("div");
   answerDiv.classList = "answer";
   answerDiv.textContent = "Answer: " + answer;
