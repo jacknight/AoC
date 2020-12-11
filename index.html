@@ -27,6 +27,8 @@
 
     <script>
       let daysElement = document.querySelector(".days");
+      var returned = 0;
+
       for (let i = 1; i < 26; i++) {
         (async () => {
           let response = await fetch(`2020/Day ${i}/Part 1.html`);
@@ -54,12 +56,14 @@
             daysElement.appendChild(dayElement);
           }
         })().then(() => {
-          if (i === 25) {
+          returned++;
+          if (returned === 25) {
             loaded();
           }
         });
       }
 
+      // In case one of the fetch calls hangs for some reason
       window.onload = setTimeout(loaded, 2000);
 
       function loaded() {
