@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../aoc.css" />
+    <title>Day 12 - Part 1</title>
+  </head>
+  <body>
+    <div class="calculating">Calculating...</div>
+  </body>
+  <script src="../aoc.js"></script>
+  <script>
+    fetch("input.txt")
+      .then((response) => response.text())
+      .then((text) => {
+        let lines = text.split("\n");
+        let answer = 0;
+
+        // solution here
+        let latitude = 0;
+        let longitude = 0;
+        const directions = {
+          EAST: 0,
+          SOUTH: 1,
+          WEST: 2,
+          NORTH: 3,
+        };
+
+        let direction = directions.EAST;
+
+        for (line of lines) {
+          let letter = String(line.match(/[A-Z]+/g));
+          let number = Number(line.match(/[0-9]+/g));
+          let dir = direction;
+
+          switch (letter) {
+            case "N":
+              moveShip(number, directions.NORTH);
+              break;
+            case "E":
+              moveShip(number, directions.EAST);
+              break;
+            case "S":
+              moveShip(number, directions.SOUTH);
+              break;
+            case "W":
+              moveShip(number, directions.WEST);
+              break;
+            case "F":
+              moveShip(number, direction);
+              break;
+            case "L":
+            case "R":
+              changeDirection(letter, number);
+              break;
+            default:
+              break;
+          }
+        }
+
+        answer = Math.abs(latitude) + Math.abs(longitude);
+
+        function moveShip(number, dir) {
+          switch (dir) {
+            case directions.EAST:
+              longitude -= number;
+              break;
+            case directions.WEST:
+              longitude += number;
+              break;
+            case directions.NORTH:
+              latitude += number;
+              break;
+            case directions.SOUTH:
+              latitude -= number;
+              break;
+            default:
+              break;
+          }
+        }
+
+        function changeDirection(letter, number) {
+          let newDir = (number % 360) / 90;
+          if (newDir === 0) return;
+
+          if (letter === "L") direction = direction - newDir;
+          else if (letter === "R") direction = direction + newDir;
+
+          if (direction < 0) direction = 4 - Math.abs(direction);
+          else if (direction > 3) direction -= 4;
+        }
+        displayAnswer(answer);
+      });
+  </script>
+</html>
